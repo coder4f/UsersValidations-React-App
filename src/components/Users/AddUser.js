@@ -4,7 +4,7 @@ import Card from "../UI/Card";
 import styles from "./AddUser.module.css";
 
 const AddUser = (props) => {
-  const [username, setUsername] = useState("");
+  const [username, setUserName] = useState("");
   const [userage, setUserAge] = useState("");
 
   const addUserHandler = (event) => {
@@ -12,15 +12,16 @@ const AddUser = (props) => {
     if (username.trim().length === 0 || userage.trim().length === 0) {
       return;
     }
-    if (userage < 1) {
+    if (+userage < 1) {
       return;
     }
-    setUsername("");
+    props.onAddUser(username, userage);
+    setUserName("");
     setUserAge("");
   };
 
   const userNameChangeHandler = (event) => {
-    setUsername(event.target.value);
+    setUserName(event.target.value);
   };
 
   const userAgeChangeHandler = (event) => {
